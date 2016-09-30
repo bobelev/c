@@ -2,37 +2,43 @@
 <html>
 <head>
     <script>
+        var end = new Date( 1475844714762 )
+
         function startTime() {
-            function floor(n) {
-                return Math.floor(n)
+            function floor( n ) {
+                return Math.floor( n )
             }
 
-            var today = new Date()
-            var end = new Date(1475226826235)
-            var diff_sec = (end - today) / 1000
-            var parts = [
-                floor(diff_sec / 86400),
-                floor((diff_sec % 86400) / 3600),
-                floor((diff_sec % 3600) / 60),
-                floor(diff_sec % 60)]
 
-            var d = parts[0]
-            var h = parts[1]
-            var m = parts[2]
-            var s = parts[3]
+            var now      = new Date()
+            var diff_sec = (end - now) / 1000
+            if( diff_sec > 0 ) {
 
-            m = checkTime(m);
-            s = checkTime(s);
+                var parts = [
+                    floor( diff_sec / 86400 ),
+                    floor( (diff_sec % 86400) / 3600 ),
+                    floor( (diff_sec % 3600) / 60 ),
+                    floor( diff_sec % 60 )]
 
-            document.getElementById('txt').innerHTML = d + ' days and  ' + h + ":" + m + ":" + s;
-            var t = setTimeout(startTime, 500);
+                var d = parts[0]
+                var h = parts[1]
+                var m = parts[2]
+                var s = parts[3]
+
+                m = checkTime( m )
+                s = checkTime( s )
+
+                document.getElementById( 'txt' ).innerHTML = d + ' days and  ' + h + ":" + m + ":" + s
+                var t                                      = setTimeout( startTime, 500 )
+            }
+            else
+                document.getElementById( 'txt' ).innerHTML = 'ok'
         }
-        function checkTime(i) {
-            if (i < 10) {
+        function checkTime( i ) {
+            if( i < 10 ) {
                 i = "0" + i
             }
-            ;  
-            return i;
+            return i
         }
     </script>
 </head>
